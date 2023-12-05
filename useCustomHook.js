@@ -1,13 +1,11 @@
-import {useState} from "react"
+import { useState } from "react";
 
 const useCustomHook = (initialValue) => {
-    const [someValue, setSomeValue] = useState(initialValue)
-    
-    const someFunction = () => {        
-        setSomeValue("abcdefgh")
-    }
-    
-    return { someValue, someFunction }
-}
+	const [someValue, setSomeValue] = useState(initialValue);
 
-export default useCustomHook
+	const someFunction = () => {};
+
+	return { someValue, someFunction };
+};
+
+export default useCustomHook;

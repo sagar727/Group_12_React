@@ -103,6 +103,7 @@ export default function App() {
 					ListEmptyComponent={<Text>You Have No Tasks</Text>}
 					ItemSeparatorComponent={listData.length > 1 ? ItemSeparator : null}
 					style={styles.flatListSpacing}
+					testID="listData"
 				/>
 				<View style={styles.inputContainer}>
 					<TextInput
@@ -110,9 +111,10 @@ export default function App() {
 						placeholder="Enter task name"
 						value={taskName}
 						onChangeText={setTaskName}
+						testID="taskInputBox"
 					/>
 					<View style={styles.buttonContainer}>
-						<Button title="Add Task" onPress={addTask} />
+						<Button title="Add Task" onPress={addTask} testID="btnSubmitTask" />
 					</View>
 				</View>
 			</View>
