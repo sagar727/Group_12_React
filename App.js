@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, SafeAreaView, FlatList,  Platform, StatusBar  } from 'react-native';
+import { StyleSheet, Text, View, SafeAreaView, FlatList,  Platform, StatusBar, Button  } from 'react-native';
 
 import {useState} from "react"
 
@@ -6,13 +6,19 @@ import {useState} from "react"
 import RowComponent from './components/RowComponent';
 
 // import the todo list
-import { todoList } from './TodoList';
+import { todoList, add, update, deleteAll } from './TodoList';
 
 export default function App() {
   
   // set the flatlist's state variable to the todo list
   const [listData, setListData] = useState(todoList)
-  
+
+  const addTask = () => {
+      //add()
+      //deleteAll()
+      update(1,"Another item",true)
+  }
+
   return (
     <SafeAreaView style={styles.container}>
       <View style={{flex:1}}>
@@ -25,6 +31,7 @@ export default function App() {
               return <RowComponent rowNumber={item.id}/>
             }
           }/>
+          <Button title="Add" onPress={addTask}/>
       </View>
     </SafeAreaView>
   );
