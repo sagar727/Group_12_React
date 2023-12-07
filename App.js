@@ -1,39 +1,30 @@
-import { StyleSheet, Text, View, SafeAreaView, FlatList,  Platform, StatusBar  } from 'react-native';
+import {
+  Text,
+  View,
+  FlatList,
+  TouchableOpacity,
+  Image,
+  Alert,
+  TextInput,
+  Button,
+  SafeAreaView,
+} from "react-native";
 
-import {useState} from "react"
+import { useState } from "react";
 
 // custom component for a FlatList row
-import RowComponent from './components/RowComponent';
+import RowComponent from "./components/RowComponent";
 
 // import the todo list
-import { todoList } from './TodoList';
+import { todoList, add, deleteAll } from "./TodoList";
+
+import styles from "./style";
 
 export default function App() {
-<<<<<<< Updated upstream
-  
   // set the flatlist's state variable to the todo list
-  const [listData, setListData] = useState(todoList)
+  const [listData, setListData] = useState(todoList);
   
-  return (
-    <SafeAreaView style={styles.container}>
-      <View style={{flex:1}}>
-        <Text>Todo List</Text>
-        <FlatList
-          style={styles.list}
-          data={listData}
-          renderItem = {
-            ({item})=>{
-              return <RowComponent rowNumber={item.id}/>
-            }
-          }/>
-      </View>
-    </SafeAreaView>
-  );
-=======
-	// set the flatlist's state variable to the todo list
-	const [listData, setListData] = useState(todoList);
-
-	const updateItemCompletion = (itemId, isCompleted) => {
+  	const updateItemCompletion = (itemId, isCompleted) => {
 		setListData((currentListData) =>
 			currentListData.map((item) =>
 				item.id === itemId ? { ...item, isCompleted } : item
@@ -41,48 +32,44 @@ export default function App() {
 		);
 	};
 
-	const handleDeletePress = () => {
-		if (listData.length === 0) {
-			Alert.alert("Info", "You have no tasks to delete");
-			return;
-		}
-		Alert.alert(
-			"Confirm Delete",
-			"Are you sure you want to delete all items?",
-			[
-				{ text: "Cancel", style: "cancel" },
-				{ text: "OK", onPress: () => setListData([]) },
-			],
-			{ cancelable: true }
-		);
-	};
-	const [taskName, setTaskName] = useState("");
 
-	const addTask = () => {
-		if (taskName.trim().length === 0) {
-			Alert.alert("Warning", "A task name is required");
-			return;
-		}
+  const handleDeletePress = () => {
+    if (listData.length === 0) {
+      Alert.alert("Info", "You have no tasks to delete");
+      return;
+    }
+    Alert.alert(
+      "Confirm Delete",
+      "Are you sure you want to delete all items?",
+      [
+        { text: "Cancel", style: "cancel" },
+        {
+          text: "OK",
+          onPress: () => {
+            setListData([]);
+            deleteAll();
+          },
+        },
+      ],
+      { cancelable: true }
+    );
+  };
+  const [taskName, setTaskName] = useState("");
 
-		// Find the maximum ID in the current list
-		const maxId = listData.reduce((max, item) => Math.max(max, item.id), 0);
+  const addTask = () => {
+    if (taskName.trim().length === 0) {
+      Alert.alert("Warning", "A task name is required");
+      return;
+    }
 
-		// Create a new task with ID = maxId + 1
-		const newTask = {
-			id: maxId + 1,
-			name: taskName,
-			isCompleted: false,
-		};
+    add(taskName);
 
-		setListData((currentListData) => [...currentListData, newTask]);
-		setTaskName("");
-	};
+    setTaskName("");
+  };
 
-	const isListEmpty = listData.length === 0;
-
-	const ItemSeparator = () => {
-		return <View style={styles.separator} />;
-	};
+  const ItemSeparator = () => {
+    return <View style={styles.separator} />;
+  };
 
 	return (
 		<SafeAreaView style={styles.container}>
@@ -128,7 +115,6 @@ export default function App() {
 			</View>
 		</SafeAreaView>
 	);
->>>>>>> Stashed changes
 }
 
 const styles = StyleSheet.create({
