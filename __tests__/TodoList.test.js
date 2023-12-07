@@ -1,4 +1,4 @@
-import { todoList, add, update, deleteAll } from "../TodoList";
+import { todoList, add, update, deleteAll, getTodoList } from "../TodoList";
 
 describe("Todo list operations", () => {
   it("Add function with empty string", () => {
@@ -15,6 +15,18 @@ describe("Todo list operations", () => {
     add("Do homework");
     add("Walk the dog");
     expect(todoList.length).toBe(2);
+  });
+
+  it("Delete all function", () => {
+    deleteAll();
+    expect(todoList.length).toBe(0);
+  });
+
+  it("Get function", () => {
+    add("Do homework");
+    add("Walk the dog");
+    getTodoList()
+    expect(getTodoList().length).toBe(2);
   });
 
   it("Update function with only empty string", () => {
@@ -36,10 +48,5 @@ describe("Todo list operations", () => {
 
   it("Update function with id as number 1, task as string and isCompleted as Boolean", () => {
     expect(update(1, "Do homework", true)).toBe(true);
-  });
-
-  it("Delete all function", () => {
-    deleteAll();
-    expect(todoList.length).toBe(0);
   });
 });

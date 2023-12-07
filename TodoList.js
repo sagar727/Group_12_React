@@ -23,6 +23,10 @@ const add = (task) => {
   }
 };
 
+const getTodoList = () =>{
+  return todoList
+}
+
 const update = (id, task, isCompleted) => {
   if (id !== undefined || task !== undefined || isCompleted !== undefined) {
     if (typeof id === "number" && typeof isCompleted === "boolean") {
@@ -56,4 +60,4 @@ const deleteAll = () => {
   console.log(todoList);
 };
 
-export { todoList, add, update, deleteAll };
+export { todoList, add, update, deleteAll, getTodoList };
