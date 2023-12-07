@@ -23,6 +23,15 @@ import styles from "./style";
 export default function App() {
   // set the flatlist's state variable to the todo list
   const [listData, setListData] = useState(todoList);
+  
+  	const updateItemCompletion = (itemId, isCompleted) => {
+		setListData((currentListData) =>
+			currentListData.map((item) =>
+				item.id === itemId ? { ...item, isCompleted } : item
+			)
+		);
+	};
+
 
   const handleDeletePress = () => {
     if (listData.length === 0) {
@@ -62,38 +71,56 @@ export default function App() {
     return <View style={styles.separator} />;
   };
 
-  return (
-    <SafeAreaView style={styles.container}>
-      <View style={styles.header}>
-        <Text style={styles.title}>GROUP 12 - Todo List</Text>
-        <TouchableOpacity onPress={handleDeletePress}>
-          <Image
-            source={require("./assets/delete.png")}
-            style={styles.deleteButton}
-          />
-        </TouchableOpacity>
-      </View>
-      <FlatList
-        data={listData}
-        renderItem={({ item }) => <RowComponent itemData={item} />}
-        keyExtractor={(item) => item.id.toString()}
-        ListEmptyComponent={<Text>You Have No Tasks</Text>}
-        ItemSeparatorComponent={listData.length > 1 ? ItemSeparator : null}
-        style={styles.flatListSpacing}
-        testID="listData"
-      />
-      <View style={styles.inputContainer}>
-        <TextInput
-          style={styles.input}
-          placeholder="Enter task name"
-          value={taskName}
-          onChangeText={setTaskName}
-          testID="taskInputBox"
-        />
-        <View style={styles.buttonContainer}>
-          <Button title="Add Task" onPress={addTask} testID="btnSubmitTask" />
-        </View>
-      </View>
-    </SafeAreaView>
-  );
+	return (
+		<SafeAreaView style={styles.container}>
+			<View style={{ flex: 1 }}>
+				<View style={styles.header}>
+					<Text style={styles.title}>GROUP 12 - Todo List</Text>
+					<TouchableOpacity
+						onPress={handleDeletePress}
+						style={styles.deleteButtonContainer}
+					>
+						<Image
+							source={require("./assets/delete.png")}
+							style={styles.deleteButton}
+						/>
+					</TouchableOpacity>
+				</View>
+				<FlatList
+					data={listData}
+					renderItem={({ item }) => (
+						<RowComponent
+							todo={item}
+							onToggleCompletion={updateItemCompletion}
+						/>
+					)}
+					keyExtractor={(item) => item.id.toString()}
+					ListEmptyComponent={<Text>You Have No Tasks</Text>}
+					ItemSeparatorComponent={listData.length > 1 ? ItemSeparator : null}
+					style={styles.flatListSpacing}
+					testID="listData"
+				/>
+				<View style={styles.inputContainer}>
+					<TextInput
+						style={styles.input}
+						placeholder="Enter task name"
+						value={taskName}
+						onChangeText={setTaskName}
+						testID="taskInputBox"
+					/>
+					<View style={styles.buttonContainer}>
+						<Button title="Add Task" onPress={addTask} testID="btnSubmitTask" />
+					</View>
+				</View>
+			</View>
+		</SafeAreaView>
+	);
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',    
+    paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
+  },  
+});
