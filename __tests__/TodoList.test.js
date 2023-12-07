@@ -29,24 +29,20 @@ describe("Todo list operations", () => {
     expect(getTodoList().length).toBe(2);
   });
 
-  it("Update function with only empty string", () => {
-    expect(update("")).toBe(false);
+  it("Update function with id string, isCompleted as string", () => {
+    expect(update("1", "true")).toBe(false);
   });
 
-  it("Update function with id empty string, task as string and isCompleted as string", () => {
-    expect(update("1", "Do homework", "true")).toBe(false);
+  it("Update function with id as null, isCompleted as Boolean", () => {
+    expect(update(null, true)).toBe(false);
   });
 
-  it("Update function with id as null, task as string and isCompleted as Boolean", () => {
-    expect(update(null, "Do homework", true)).toBe(false);
-  });
-
-  it("Update function with id as number 3, task as string and isCompleted as Boolean", () => {
+  it("Update function with id as number 3, isCompleted as Boolean", () => {
     //3 is not their in list.
-    expect(update(3, "Do homework", true)).toBe(undefined);
+    expect(update(3, true)).toBe(undefined);
   });
 
-  it("Update function with id as number 1, task as string and isCompleted as Boolean", () => {
-    expect(update(1, "Do homework", true)).toBe(true);
+  it("Update function with id as number 1, isCompleted as Boolean", () => {
+    expect(update(1, true)).toBe(true);
   });
 });
