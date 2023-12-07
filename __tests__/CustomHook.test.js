@@ -14,7 +14,13 @@ describe("Custom Hook Tests", () => {
   });
 
   it("The toggle() function updates the state variable", () => {
-    const item = todoList[0]; //isComplete == false
+    const item = {
+      id: 0,
+      name: "Test Item",
+      isCompleted: false,
+    };
+
+    todoList[0] = item;
 
     const result = renderHook(useCompletionValue, {
       initialProps: item.isCompleted,
