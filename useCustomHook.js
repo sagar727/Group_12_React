@@ -1,10 +1,10 @@
 import { useState } from "react";
-import { todoList } from "./TodoList";
+import { todoList, update } from "./TodoList";
 
 const useCompletionValue = (initialValue) => {
   const [todoCompletionValue, setTodoCompletionValue] = useState(initialValue);
 
-  const toggle = (id) => {
+  const toggle = (id, name) => {
     const foundItem = todoList.find((item) => {
       return item.id === id;
     });
@@ -17,6 +17,7 @@ const useCompletionValue = (initialValue) => {
     const newValue = !todoCompletionValue;
     setTodoCompletionValue(newValue);
     foundItem.isCompleted = newValue;
+    update(id,name,newValue)
   };
 
   return { todoCompletionValue, toggle };

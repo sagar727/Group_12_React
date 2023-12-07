@@ -4,7 +4,16 @@ const style = StyleSheet.create({
 	container: {
 		flex: 1,
 		backgroundColor: "#fff",
-		paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
+		paddingTop: Platform.OS == "android" ? StatusBar.currentHeight : 0,
+	},
+
+	mainContainer:{
+		flex:1,
+		backgroundColor:"yellow",
+		flexDirection:"column",
+		justifyContent:"space-between",
+		alignItems:"center",
+		padding:10
 	},
 
 	inputContainer: {
@@ -43,7 +52,6 @@ const style = StyleSheet.create({
 		margin: 15,
 	},
 	title: { flex: 1, fontSize: 26, fontWeight: "bold" },
-	deleteButton: { width: 26, height: 26, margin: 15 },
 	flatListSpacing: { marginLeft: 10, marginRight: 10 },
 });
 export default style;
