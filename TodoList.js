@@ -26,7 +26,7 @@ const getTodoList = () => {
 };
 
 const update = (id, isCompleted) => {
-  if (id !== undefined || isCompleted !== undefined) {
+  if (id !== null || isCompleted !== null) {
     if (typeof id === "number" && typeof isCompleted === "boolean") {
       todoList.map((task) => {
         if (id == task.id) {
