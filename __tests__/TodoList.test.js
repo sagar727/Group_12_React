@@ -39,7 +39,7 @@ describe("Todo list operations", () => {
 
   it("Update function with id as number 3, isCompleted as Boolean", () => {
     //3 is not their in list.
-    expect(update(3, true)).toBe(undefined);
+    expect(update(3, true)).toBe(false);
   });
 
   it("Update function with id as number 1, isCompleted as Boolean", () => {

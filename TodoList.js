@@ -1,11 +1,11 @@
 // NOTE: This is an example! Refer to the project description for
 // how this should be implemented!
-// let todoList = [
+// const todoList = [
 //   { id: 1, name: "Some item", isCompleted: false },
 //   { id: 2, name: "Another item", isCompleted: false },
 // ];
 
-let todoList = [];
+const todoList = [];
 
 const add = (task) => {
   if (task !== undefined) {
@@ -34,16 +34,16 @@ const update = (id, isCompleted) => {
           console.log(todoList);
         }
       });
-      if (todoList[id - 1] != undefined) {
-        return todoList[id - 1].isCompleted;
+      if (todoList[id - 1] != null) {
+        return true
       } else {
-        return todoList[id - 1];
+        return false
       }
     } else {
       return false;
     }
   } else {
-    return undefined;
+    return false;
   }
 };
 
