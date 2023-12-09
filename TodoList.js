@@ -7,6 +7,10 @@
 
 const todoList = [];
 
+const getTodoList = () => {
+  return todoList;
+};
+
 const add = (task) => {
   if (task !== undefined) {
     if (task.trim().length !== 0) {
@@ -16,13 +20,9 @@ const add = (task) => {
         name: task,
         isCompleted: false,
       });
-      console.log(todoList);
+      console.log(todoList)
     }
   }
-};
-
-const getTodoList = () => {
-  return todoList;
 };
 
 const update = (id, isCompleted) => {
@@ -31,7 +31,7 @@ const update = (id, isCompleted) => {
       todoList.map((task) => {
         if (id == task.id) {
           task.isCompleted = isCompleted;
-          console.log(todoList);
+          console.log(todoList)
         }
       });
       if (todoList[id - 1] != null) {
@@ -49,7 +49,7 @@ const update = (id, isCompleted) => {
 
 const deleteAll = () => {
   todoList.length = 0;
-  console.log(todoList);
+  console.log(todoList)
 };
 
-export { todoList, add, update, deleteAll, getTodoList };
+export {todoList, add, update, deleteAll, getTodoList };

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { todoList, update } from "./TodoList";
+import { update } from "./TodoList";
 
 const useCompletionValue = (initialValue) => {
   const [todoCompletionValue, setTodoCompletionValue] = useState(initialValue);

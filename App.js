@@ -16,13 +16,13 @@ import { useState } from "react";
 import RowComponent from "./components/RowComponent";
 
 // import the todo list
-import { todoList, add, getTodoList, deleteAll } from "./TodoList";
+import { add, getTodoList, deleteAll } from "./TodoList";
 
 import styles from "./style";
 
 export default function App() {
 	// set the flatlist's state variable to the todo list
-	const [listData, setListData] = useState(todoList);
+	const [listData, setListData] = useState(getTodoList());
 
 	const handleDeletePress = () => {
 		if (listData.length === 0) {
